@@ -7,5 +7,5 @@ import lombok.Getter;
 @AllArgsConstructor
 public class Triangle {
 
-    public TriangleIndexes[] indexes;
+    private TriangleIndexes[] indexes;
 }

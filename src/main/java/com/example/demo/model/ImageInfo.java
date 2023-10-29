@@ -2,6 +2,7 @@ package com.example.demo.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
 import java.util.List;
 
@@ -9,9 +10,9 @@ import java.util.List;
 @Setter
 public class ImageInfo {
 
-    private Vector3 cameraPosition;
-    private Vector3 cameraTarget;
-    private Vector3 camUp;
+    private Vector3D cameraPosition;
+    private Vector3D cameraTarget;
+    private Vector3D camUp;
 
     private float positionX;
     private float positionY;
@@ -19,5 +20,5 @@ public class ImageInfo {
     private float RotationX;
     private float RotationY;
 
-    private List<Vector3> Vertexes; // TODO really needed???
+    private List<Vector3D> Vertexes; // TODO really needed???
 }
