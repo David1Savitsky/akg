@@ -3,12 +3,13 @@ package com.example.demo.model;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.SneakyThrows;
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Matrix4x4 {
+public class Matrix4x4 implements Cloneable {
 
     private double m11;
     private double m12;
@@ -34,16 +35,18 @@ public class Matrix4x4 {
             0, 0, 0, 1
     );
 
+    @SneakyThrows
     public static Matrix4x4 createTranslation(double x, double y, double z) {
-        var res = BASE;
+        var res = (Matrix4x4) BASE.clone();
         res.m41 = x;
         res.m42 = y;
         res. m43 = z;
         return res;
     }
 
+    @SneakyThrows
     public static Matrix4x4 createRotationX(double radians) {
-        var res = BASE;
+        var res = (Matrix4x4) BASE.clone();
 
         double cos = Math.cos(radians);
         double sin = Math.sin(radians);
@@ -56,8 +59,9 @@ public class Matrix4x4 {
         return res;
     }
 
+    @SneakyThrows
     public static Matrix4x4 createRotationY(double radians) {
-        var res = BASE;
+        var res = (Matrix4x4) BASE.clone();
 
         double cos = Math.cos(radians);
         double sin = Math.sin(radians);
@@ -96,20 +100,22 @@ public class Matrix4x4 {
         return res;
     }
 
+    @SneakyThrows
     public static Matrix4x4 createScale(double x, double y, double z) {
-        Matrix4x4 res = BASE;
+        var res = (Matrix4x4) BASE.clone();
         res.m11 = x;
         res.m22 = y;
         res.m33 = z;
         return res;
     }
 
+    @SneakyThrows
     public static Matrix4x4 createView(Vector3D cameraPosition, Vector3D cameraTarget, Vector3D cameraUpVector) {
         var zaxis = cameraPosition.subtract(cameraTarget).normalize();
         var xaxis = cameraUpVector.crossProduct(zaxis).normalize();
         var yaxis = zaxis.crossProduct(xaxis);
 
-        var res = BASE;
+        var res = (Matrix4x4) BASE.clone();
 
         res.m11 = xaxis.getX();
         res.m12 = yaxis.getX();
@@ -155,8 +161,9 @@ public class Matrix4x4 {
         return res;
     }
 
+    @SneakyThrows
     public static Matrix4x4 createViewPort(double x, double y, double width, double height, double minDepth, double maxDepth) {
-        var res = BASE;
+        var res = (Matrix4x4) BASE.clone();
 
         res.m11 = width / 2;
         res.m22 = - (height / 2);
@@ -167,5 +174,10 @@ public class Matrix4x4 {
         res.m43 = minDepth;
 
         return res;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

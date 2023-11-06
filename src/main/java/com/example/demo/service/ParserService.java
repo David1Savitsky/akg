@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.model.ParseResult;
+import com.example.demo.model.Result;
 import com.example.demo.model.Triangle;
 import com.example.demo.model.TriangleIndexes;
 import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
@@ -11,7 +11,7 @@ import java.util.List;
 
 public class ParserService {
 
-    public static ParseResult parse(List<String> content) {
+    public static Result parse(List<String> content) {
         var vertexes = new ArrayList<Vector3D>();
         var normals = new ArrayList<Vector3D>();
         var triangles = new ArrayList<Triangle>();
@@ -57,6 +57,6 @@ public class ParserService {
                 }
             }
         }
-        return new ParseResult(vertexes, normals, triangles);
+        return new Result(vertexes, normals, triangles);
     }
 }
