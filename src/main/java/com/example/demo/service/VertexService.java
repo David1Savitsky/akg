@@ -8,7 +8,7 @@ import org.apache.commons.math3.geometry.euclidean.threed.Vector3D;
 import java.util.List;
 
 public class VertexService {
-    private static final float FOV = (float)3.1415 / 8;
+    private static final float FOV = (float) (Math.PI / 8.0d);
     private static final float NEAR_PLANE_DISTANCE = 0.1f;
     private static final float FAR_PLANE_DISTANCE = 100;
 
